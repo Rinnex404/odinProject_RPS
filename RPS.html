@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<script>
+    function getComputerChoice(){
+        const cpChoice = ["Rock", "Paper", "Scissors"];
+        let randnum = Math.floor(Math.random() * 3); /*math.random *3 generate random decimal number around 3, math.floor then rounding it to integer smaller than 3*/
+        let randChoice = cpChoice[randnum];
+        return randChoice;
+    }
+
+    function getHumanChoice(){
+        let choice = prompt("Rock paper scissors?:");
+        return choice;
+    }
+
+    function playRound(playerSelection, computerSelection){
+        const PlayerChoice = playerSelection.toUpperCase();
+        /*return PlayerChoice === "ROCK" && computerSelection === "Paper" ? "You Lose! Paper beats Rock"
+        : PlayerChoice === "ROCK" && computerSelection === "Rock" ? "Its a tie" : PlayerChoice === "ROCK" && computerSelection === "Scissors" ? "You Won!"
+        : PlayerChoice === "SCISSORS" && computerSelection === "Paper" ? "You Won!"
+        : PlayerChoice === "SCISSORS" && computerSelection === "Rock" ? "You Lose! Rock beat scissors" : PlayerChoice === "SCISSORS" && computerSelection === "Scissors" ? "Its a tie"
+        : PlayerChoice === "PAPER" && computerSelection === "Paper" ? "Its a tie"
+        : PlayerChoice === "PAPER" && computerSelection === "Rock" ? "You Won!" : PlayerChoice === "PAPER" && computerSelection === "Scissors" ? "You Lose! Scissors beat Paper" : "Wrong input try again";
+        */
+        if(PlayerChoice === "ROCK" && computerSelection === "Paper"){
+            computerScore += 1;
+            alert ("You Lose! Paper beats Rock");
+        }else if(PlayerChoice === "PAPER" && computerSelection === "Scissors"){
+            computerScore += 1;
+            alert ("You Lose! Scissors beats Paper");
+        }else if(PlayerChoice === "SCISSORS" && computerSelection === "Rock"){
+            computerScore += 1;
+            alert ("You Lose! Rock beats Scissors");
+        }else if((PlayerChoice === "ROCK" && computerSelection === "Rock") || (PlayerChoice === "PAPER" && computerSelection === "Paper") || (PlayerChoice === "SCISSORS" && computerSelection === "Scissors")){
+            alert ("Its a tie");
+        }else if((PlayerChoice === "ROCK" && computerSelection === "Scissors") || (PlayerChoice === "PAPER" && computerSelection === "Rock") || (PlayerChoice === "SCISSORS" && computerSelection === "Paper")){    
+            humanScore += 1;
+            alert("You Won!");          
+        }else{
+            alert("wrong input!");
+        }
+    }
+
+    function playGame(){
+        for(let i = 0; i<5; i++){
+            playerSelection = getHumanChoice();
+            computerSelection = getComputerChoice();
+            playRound(playerSelection, computerSelection);
+        }
+    }
+
+    function result(){
+        return humanScore < computerScore ?  "You Lose!" : humanScore > computerScore ? "You Won!" : "Its a tie!";
+    }
+
+    var humanScore = 0, computerScore = 0;
+    var playerSelection, computerSelection, finalResult;
+    playGame();
+    finalResult = result();
+    
+    console.log("player: " + humanScore + '\n' + "computer: " + computerScore + '\n' + result());
+</script>
+</body>
+</html>
